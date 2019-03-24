@@ -1,19 +1,28 @@
 import subprocess
+import sys
 
 import xmltodict
+
+PYTHON_MAJOR = sys.version_info[0]
 
 # =========
 # Command execution
 # =========
 
+
 def run_command(command):
     """Run a command and return the ouput as a single string"""
-    return subprocess.check_output(command + ["-xml"]).decode("utf-8")
+    if PYTHON_MAJOR == 3:
+        return subprocess.check_output(command + ["-xml"]).decode("utf-8")
+    else:
+        return subprocess.Popen(
+            command + ["-xml"], stdout=subprocess.PIPE
+        ).communicate()[0]
 
 
-def open_file(command):
+def open_file(filename):
     """Open a file and return the contents as a string"""
-    with open(command, "r") as myfile:
+    with open(filename, "r") as myfile:
         data = myfile.read()
     return data
 
@@ -85,7 +94,8 @@ def process_queues_xml(text):
 def get_hosts():
     """Get dict of host info"""
     # qhost
-    hosts_text = open_file("test/qhost.txt")
+    # hosts_text = open_file("test/qhost.txt")
+    hosts_text = run_command(["qhost"])
     hosts = process_hosts_xml(hosts_text)
     return hosts
 
@@ -93,7 +103,8 @@ def get_hosts():
 def get_jobs():
     """Get dict of job info"""
     # qstat -u "*"
-    jobs_text = open_file("test/jobs.txt")
+    # jobs_text = open_file("test/jobs.txt")
+    jobs_text = run_command(["qstat", "-u", '"*"'])
     jobs = process_jobs_xml(jobs_text)
     return jobs
 
@@ -101,6 +112,7 @@ def get_jobs():
 def get_queues():
     """Get dict of queue info"""
     # qstat -g c
-    queues_text = open_file("test/queue.txt")
+    # queues_text = open_file("test/queue.txt")
+    queues_text = run_command(["qstat", "-g", "c"])
     queues = process_queues_xml(queues_text)
     return queues
