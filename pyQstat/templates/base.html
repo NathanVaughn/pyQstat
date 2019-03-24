@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+{% include 'partials/head.html' %}
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <main role="main" class="container">
+        <div class="card shadow">
+            <div class="card-body">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </main>
+
+    {% include 'partials/footer.html' %}
+    {% include 'partials/scripts.html' %}
+</body>
+
+</html>

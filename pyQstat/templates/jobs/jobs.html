@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set active_tab = "Jobs" %}
+
+{% block content %}
+    <table id="main_table" class="table table-hover table-striped display nowrap">
+        <thead class="">
+            <tr>
+                <th data-priority="1">Job ID</th>
+                <th data-priority="900">Priority</th>
+                <th data-priority="300">Name</th>
+                <th data-priority="400">User</th>
+                <th data-priority="500">State</th>
+                <th data-priority="700">Submit/Start</th>
+                <th data-priority="600">Queue</th>
+                <th data-priority="800">Slots</th>
+                <th data-priority="1000">Tasks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs -%}
+            <tr>
+                <td>{{ job["JB_job_number"] }}</td>
+                <td>{{ job["JAT_prio"] }}</td>
+                <td>{{ job["JB_name"] }}</td>
+                <td>{{ job["JB_owner"] }}</td>
+                <td>{{ job["state"] }}</td>
+                <td>{{ job["JAT_start_time"] }}</td>
+                <td>{{ job["queue_name"] }}</td>
+                <td>{{ job["slots"] }}</td>
+                <td>{{ job["tasks"] }}</td>
+            </tr>
+            {% endfor -%}
+        </tbody>
+    </table>
+{% endblock %}

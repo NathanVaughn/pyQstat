@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <a class="navbar-brand" href="/">
+        <img src="{{ url_for('static', filename='img/icon.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+        pyQstat
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnavbar" aria-controls="mainnavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {% set navbar = [
+        ('hosts.all', 'Hosts'),
+        ('jobs.all', 'Jobs'),
+        ('queues.all', 'Queues')
+    ] -%}
+
+    <div class="collapse navbar-collapse" id="mainnavbar">
+        <ul class="navbar-nav">
+            {% for href, name in navbar %}
+            <li class="nav-item">
+                <a class="nav-link{% if name == active_tab %} active{% endif %}" href="{{ url_for(href) }}">{{ name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

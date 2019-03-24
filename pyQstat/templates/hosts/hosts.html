@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set active_tab = "Hosts" %}
+
+{% block content %}
+    <table id="main_table" class="table table-hover table-striped display nowrap">
+        <thead class="">
+            <tr>
+                <th data-priority="1">Hostname</th>
+                <th data-priority="1000">Architecture</th>
+                <th data-priority="400">Cores</th>
+                <th data-priority="300">Threads</th>
+                <th data-priority="200">Load</th>
+                <th data-priority="700">RAM Total</th>
+                <th data-priority="600">RAM Use</th>
+                <th data-priority="900">SWAP Total</th>
+                <th data-priority="800">SWAP Use</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for host in hosts -%}
+            <tr>
+                <td>{{ host["hostname"] }}</td>
+                <td>{{ host["arch_string"] }}</td>
+                <td>{{ host["m_core"] }}</td>
+                <td>{{ host["m_thread"] }}</td>
+                <td>{{ host["load_avg"] }}</td>
+                <td>{{ host["mem_total"] }}</td>
+                <td>{{ host["mem_used"] }}</td>
+                <td>{{ host["swap_total"] }}</td>
+                <td>{{ host["swap_used"] }}</td>
+            </tr>
+            {% endfor -%}
+        </tbody>
+    </table>
+{% endblock %}
