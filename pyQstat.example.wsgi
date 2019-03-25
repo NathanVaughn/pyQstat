@@ -19,7 +19,6 @@ else:
         exec(file_.read(), dict(__file__=activate_this))
 
 logging.basicConfig(stream=sys.stderr)
-
 sys.path.insert(0, install_dir)
 
 # =======================
@@ -32,6 +31,8 @@ os.environ["SGE_EXECD_PORT"] = "537"
 # =======================
 
 if True:
+    # the if True: is so that Black doesn't try to combine this import with the others,
+    # as it needs to be after sys.path has been configured.
     from pyQstat import create_app
 
 application = create_app()

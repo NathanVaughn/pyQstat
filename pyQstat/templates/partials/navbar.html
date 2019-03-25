@@ -7,15 +7,9 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    {% set navbar = [
-        ('hosts.all', 'Hosts'),
-        ('jobs.all', 'Jobs'),
-        ('queues.all', 'Queues')
-    ] -%}
-
     <div class="collapse navbar-collapse" id="mainnavbar">
         <ul class="navbar-nav">
-            {% for href, name in navbar %}
+            {% for href, name in pages %}
             <li class="nav-item">
                 <a class="nav-link{% if name == active_tab %} active{% endif %}" href="{{ url_for(href) }}">{{ name }}</a>
             </li>

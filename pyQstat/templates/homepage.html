@@ -1,3 +1,13 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="jumbotron text-center">
+        <div class="row">
+        {% for href, name in pages %}
+            <div class="col">
+                <a class="btn btn-primary btn-lg" href="{{ url_for(href) }}" role="button">{{ name }}</a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
