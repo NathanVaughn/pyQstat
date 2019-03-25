@@ -10,10 +10,10 @@
                 <th data-priority="400">Cores</th>
                 <th data-priority="300">Threads</th>
                 <th data-priority="200">Load</th>
-                <th data-priority="700">RAM Total</th>
                 <th data-priority="600">RAM Use</th>
-                <th data-priority="900">SWAP Total</th>
+                <th data-priority="700">RAM Total</th>
                 <th data-priority="800">SWAP Use</th>
+                <th data-priority="900">SWAP Total</th>
             </tr>
         </thead>
         <tbody>
@@ -24,10 +24,10 @@
                 <td>{{ host["m_core"] }}</td>
                 <td>{{ host["m_thread"] }}</td>
                 <td>{{ host["load_avg"] }}</td>
-                <td>{{ host["mem_total"] }}</td>
                 <td>{{ host["mem_used"] }}</td>
-                <td>{{ host["swap_total"] }}</td>
+                <td>{{ host["mem_total"] }}</td>
                 <td>{{ host["swap_used"] }}</td>
+                <td>{{ host["swap_total"] }}</td>
             </tr>
             {% endfor -%}
         </tbody>

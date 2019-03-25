@@ -27,6 +27,7 @@ $(document).ready(function () {
         responsive: true,
         autoWidth: false,
         fixedHeader: true,
+        order: ordering,
         dom: 'Bfrtip',
         pagingType: 'numbers',
         buttons: {

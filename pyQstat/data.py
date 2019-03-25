@@ -1,9 +1,14 @@
+import os
 import subprocess
 import sys
 
 import xmltodict
 
 PYTHON_MAJOR = sys.version_info[0]
+
+FAKE = False
+if "FLASK_FAKE" in os.environ.keys():
+    FAKE = os.environ["FLASK_FAKE"] == "True"
 
 # =========
 # Command execution
@@ -102,26 +107,29 @@ def process_queues_xml(text):
 
 def get_hosts():
     """Get dict of host info"""
-    # qhost
-    # hosts_text = open_file("test/qhost.txt")
-    hosts_text = run_command(["qhost"])
+    if FAKE:
+        hosts_text = open_file("test/hosts.txt")
+    else:
+        hosts_text = run_command(["qhost"])
     hosts = process_hosts_xml(hosts_text)
     return hosts
 
 
 def get_jobs():
     """Get dict of job info"""
-    # qstat -u "*"
-    # jobs_text = open_file("test/jobs.txt")
-    jobs_text = run_command(["qstat", "-u", '"*"'])
+    if FAKE:
+        jobs_text = open_file("test/jobs.txt")
+    else:
+        jobs_text = run_command(["qstat", "-u", '"*"'])
     jobs = process_jobs_xml(jobs_text)
     return jobs
 
 
 def get_queues():
     """Get dict of queue info"""
-    # qstat -g c
-    # queues_text = open_file("test/queue.txt")
-    queues_text = run_command(["qstat", "-g", "c"])
+    if FAKE:
+        queues_text = open_file("test/queues.txt")
+    else:
+        queues_text = run_command(["qstat", "-g", "c"])
     queues = process_queues_xml(queues_text)
     return queues

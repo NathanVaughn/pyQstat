@@ -3,9 +3,14 @@ from werkzeug.exceptions import abort
 
 from pyQstat import data
 
-bp = Blueprint('queues', __name__)
+bp = Blueprint("queues", __name__)
+
 
 @bp.route("/queues")
 def all():
     queues = data.get_queues()
-    return render_template("queues/queues.html", queues=queues, title="Queues")
+    ordering = [[0, "asc"]]
+
+    return render_template(
+        "queues/queues.html", queues=queues, ordering=ordering, title="Queues"
+    )

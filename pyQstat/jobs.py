@@ -9,4 +9,6 @@ bp = Blueprint("jobs", __name__)
 @bp.route("/jobs")
 def all():
     jobs = data.get_jobs()
-    return render_template("jobs/jobs.html", jobs=jobs, title="Jobs")
+    ordering = [[1, "desc"], [4, "asc"]]
+
+    return render_template("jobs/jobs.html", jobs=jobs, ordering=ordering, title="Jobs")

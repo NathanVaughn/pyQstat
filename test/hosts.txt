@@ -1,0 +1,99 @@
+<?xml version='1.0'?>
+<qhost xmlns:xsd="http://arc.liv.ac.uk/repos/darcs/sge/source/dist/util/resources/schemas/qhost/qhost.xsd">
+ <host name='global'>
+   <hostvalue name='arch_string'>-</hostvalue>
+   <hostvalue name='num_proc'>-</hostvalue>
+   <hostvalue name='m_socket'>-</hostvalue>
+   <hostvalue name='m_core'>-</hostvalue>
+   <hostvalue name='m_thread'>-</hostvalue>
+   <hostvalue name='load_avg'>-</hostvalue>
+   <hostvalue name='mem_total'>-</hostvalue>
+   <hostvalue name='mem_used'>-</hostvalue>
+   <hostvalue name='swap_total'>-</hostvalue>
+   <hostvalue name='swap_used'>-</hostvalue>
+ </host>
+ <host name='compute-0-0.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>2.13</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.1G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>76.2M</hostvalue>
+ </host>
+ <host name='compute-0-1.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.80</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.2G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>76.0M</hostvalue>
+ </host>
+ <host name='compute-0-2.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.91</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.1G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>76.5M</hostvalue>
+ </host>
+ <host name='compute-0-3.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.93</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.1G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>82.4M</hostvalue>
+ </host>
+ <host name='compute-0-4.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.94</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.2G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>80.4M</hostvalue>
+ </host>
+ <host name='compute-0-5.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.91</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.3G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>79.3M</hostvalue>
+ </host>
+ <host name='compute-0-6.local'>
+   <hostvalue name='arch_string'>lx-amd64</hostvalue>
+   <hostvalue name='num_proc'>4</hostvalue>
+   <hostvalue name='m_socket'>1</hostvalue>
+   <hostvalue name='m_core'>4</hostvalue>
+   <hostvalue name='m_thread'>4</hostvalue>
+   <hostvalue name='load_avg'>1.82</hostvalue>
+   <hostvalue name='mem_total'>7.5G</hostvalue>
+   <hostvalue name='mem_used'>2.2G</hostvalue>
+   <hostvalue name='swap_total'>1024.0M</hostvalue>
+   <hostvalue name='swap_used'>78.0M</hostvalue>
+ </host>
+</qhost>
