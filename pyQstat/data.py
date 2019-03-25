@@ -12,11 +12,20 @@ PYTHON_MAJOR = sys.version_info[0]
 
 def run_command(command):
     """Run a command and return the ouput as a single string"""
+    command = command + ["-xml"]
+
+    shell = False
+
+    if '"*"' in command:
+        # Python doesn't like the quotations required, so concatentate and run as shell
+        shell = True
+        command = " ".join(command)
+
     if PYTHON_MAJOR == 3:
-        return subprocess.check_output(command + ["-xml"]).decode("utf-8")
+        return subprocess.check_output(command, shell=shell).decode("utf-8")
     else:
         return subprocess.Popen(
-            command + ["-xml"], stdout=subprocess.PIPE
+            command, shell=shell, stdout=subprocess.PIPE
         ).communicate()[0]
 
 
