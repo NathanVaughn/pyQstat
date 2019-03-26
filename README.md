@@ -1,5 +1,21 @@
 # pyQstat
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+
 A small Python-based web app to display Sun Grid Engine (and forks) statistics.
+
+## Screenshots
+
+### Hosts
+
+![Hosts](screenshots/hosts.jpg)
+
+### Jobs
+
+![Jobs](screenshots/jobs.jpg)
+
+### Queues
+
+![Queues](screenshots/queues.jpg)
 
 ## Installation
 Installation is the same as any other Flask-based application. It's highly dependent on your particular setup, but the general process for Apache is as follows:
