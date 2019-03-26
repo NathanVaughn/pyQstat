@@ -16,8 +16,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for queue in queues -%}
+        {% for queue in queues -%}
+            {% if queue["manual_intervention"]|int %}
+            <tr class="table-danger">
+            {% elif queue["temp_disabled"]|int %}
+            <tr class="table-warning">
+            {% else %}
             <tr>
+            {% endif %}
                 <td>{{ queue["name"] }}</td>
                 <td>{{ queue["load"] }}</td>
                 <td>{{ queue["used"] }}</td>
@@ -27,7 +33,7 @@
                 <td>{{ queue["temp_disabled"] }}</td>
                 <td>{{ queue["manual_intervention"] }}</td>
             </tr>
-            {% endfor -%}
+        {% endfor -%}
         </tbody>
     </table>
 {% endblock %}

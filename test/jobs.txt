@@ -88,6 +88,16 @@
       <queue_name>all.q@compute-0-6.local</queue_name>
       <slots>28</slots>
     </job_list>
+    <job_list state="running">
+      <JB_job_number>107</JB_job_number>
+      <JAT_prio>0.60500</JAT_prio>
+      <JB_name>Job2</JB_name>
+      <JB_owner>prisum</JB_owner>
+      <state>Au</state>
+      <JAT_start_time>2019-03-25T17:38:42</JAT_start_time>
+      <queue_name>all.q@compute-0-5.local</queue_name>
+      <slots>28</slots>
+    </job_list>
   </queue_info>
   <job_info>
   </job_info>

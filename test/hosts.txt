@@ -54,7 +54,7 @@
    <hostvalue name='m_socket'>1</hostvalue>
    <hostvalue name='m_core'>4</hostvalue>
    <hostvalue name='m_thread'>4</hostvalue>
-   <hostvalue name='load_avg'>1.93</hostvalue>
+   <hostvalue name='load_avg'>0.01</hostvalue>
    <hostvalue name='mem_total'>7.5G</hostvalue>
    <hostvalue name='mem_used'>2.1G</hostvalue>
    <hostvalue name='swap_total'>1024.0M</hostvalue>
@@ -66,7 +66,7 @@
    <hostvalue name='m_socket'>1</hostvalue>
    <hostvalue name='m_core'>4</hostvalue>
    <hostvalue name='m_thread'>4</hostvalue>
-   <hostvalue name='load_avg'>1.94</hostvalue>
+   <hostvalue name='load_avg'>3.65</hostvalue>
    <hostvalue name='mem_total'>7.5G</hostvalue>
    <hostvalue name='mem_used'>2.2G</hostvalue>
    <hostvalue name='swap_total'>1024.0M</hostvalue>

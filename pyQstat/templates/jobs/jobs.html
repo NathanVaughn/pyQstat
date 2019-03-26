@@ -18,9 +18,11 @@
         </thead>
         <tbody>
         {% for job in jobs -%}
-            {% if "S" in job["state"] %}
+            {% if "a" in job["state"]|lower %}
+            <tr class="table-danger">
+            {% elif "s" in job["state"]|lower %}
             <tr class="table-warning">
-            {% elif "r" in job["state"] %}
+            {% elif "r" in job["state"]|lower %}
             <tr class="table-success">
             {% else %}
             <tr>

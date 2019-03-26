@@ -17,8 +17,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for host in hosts -%}
+        {% for host in hosts -%}
+            {% set load_per = (host["load_avg"]|float / host["m_thread"]|float * 100)|int %}
+            {% if load_per >= 75 %}
+            <tr class="table-danger">
+            {% elif load_per >= 50 %}
+            <tr class="table-warning">
+            {% elif load_per >= 25 %}
+            <tr class="table-info">
+            {% else %}
             <tr>
+            {% endif %}
                 <td>{{ host["hostname"] }}</td>
                 <td>{{ host["arch_string"] }}</td>
                 <td>{{ host["m_core"] }}</td>
@@ -29,7 +38,7 @@
                 <td>{{ host["swap_used"] }}</td>
                 <td>{{ host["swap_total"] }}</td>
             </tr>
-            {% endfor -%}
+        {% endfor -%}
         </tbody>
     </table>
 {% endblock %}

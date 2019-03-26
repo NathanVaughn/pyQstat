@@ -3,7 +3,7 @@
   <cluster_queue_summary>
     <name>all.q</name>
     <load>0.42000</load>
-    <used>28</used>
+    <used>0</used>
     <resv>0</resv>
     <available>0</available>
     <total>28</total>
