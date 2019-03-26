@@ -17,8 +17,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for job in jobs -%}
+        {% for job in jobs -%}
+            {% if "S" in job["state"] %}
+            <tr class="table-warning">
+            {% elif "r" in job["state"] %}
+            <tr class="table-success">
+            {% else %}
             <tr>
+            {% endif %}
                 <td>{{ job["JB_job_number"] }}</td>
                 <td>{{ job["JAT_prio"] }}</td>
                 <td>{{ job["JB_name"] }}</td>
@@ -29,7 +35,7 @@
                 <td>{{ job["slots"] }}</td>
                 <td>{{ job["tasks"] }}</td>
             </tr>
-            {% endfor -%}
+        {% endfor -%}
         </tbody>
     </table>
 {% endblock %}
