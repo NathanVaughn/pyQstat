@@ -5,7 +5,7 @@
   "main": "./app/src/js/index.js",
   "scripts": {
     "build-dev": "webpack --mode development",
-    "build-prod": "webpack --mode production"
+    "build": "webpack --mode production"
   },
   "author": "Nathan Vaughn",
   "license": "MIT",
@@ -23,8 +23,7 @@
     "datatables.net-fixedheader-bs4": "^3.1.5",
     "datatables.net-responsive": "^2.2.3",
     "datatables.net-responsive-bs4": "^2.2.3",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7"
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
@@ -33,6 +32,7 @@
     "css-loader": "^2.1.1",
     "mini-css-extract-plugin": "^0.5.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "purgecss-webpack-plugin": "^1.4.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"

@@ -9,8 +9,7 @@ bp = Blueprint("hosts", __name__)
 @bp.route("/hosts")
 def all():
     hosts = data.get_hosts()
-    ordering = [[0, "asc"]]
 
     return render_template(
-        "hosts/hosts.html", hosts=hosts, ordering=ordering, title="Hosts"
+        "hosts/hosts.html", hosts=hosts, title="Hosts"
     )
