@@ -10,6 +10,4 @@ bp = Blueprint("hosts", __name__)
 def all():
     hosts = data.get_hosts()
 
-    return render_template(
-        "hosts/hosts.html", hosts=hosts, title="Hosts"
-    )
+    return render_template("hosts/hosts.html", hosts=hosts, title="Hosts")

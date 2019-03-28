@@ -10,6 +10,4 @@ bp = Blueprint("queues", __name__)
 def all():
     queues = data.get_queues()
 
-    return render_template(
-        "queues/queues.html", queues=queues, title="Queues"
-    )
+    return render_template("queues/queues.html", queues=queues, title="Queues")
