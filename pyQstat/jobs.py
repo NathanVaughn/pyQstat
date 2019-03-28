@@ -10,6 +10,6 @@ bp = Blueprint("jobs", __name__)
 def all():
     jobs = data.get_jobs()
     #ordering = [[1, "desc"], [4, "asc"]]
-    ordering = [[0, "desc"]]
+    ordering = [[0, "asc"]]
 
     return render_template("jobs/jobs.html", jobs=jobs, ordering=ordering, title="Jobs")
