@@ -30,10 +30,10 @@
                 <td>{{ job["JB_job_number"] }}</td>
                 <td>{{ job["JAT_prio"] }}</td>
                 <td>{{ job["JB_name"] }}</td>
-                <td>{{ job["JB_owner"] }}</td>
+                <td><a href="{{ url_for('jobs.list_jobs', user=job['JB_owner']) }}">{{ job["JB_owner"] }}</a></td>
                 <td>{{ job["state"] }}</td>
                 <td>{{ job["JAT_start_time"] }}</td>
-                <td>{{ job["queue_name"] }}</td>
+                <td><a href="{{ url_for('jobs.list_jobs', queue=job['queue_name']) }}">{{ job["queue_name"] }}</a></td>
                 <td>{{ job["slots"] }}</td>
                 <td>{{ job["tasks"] }}</td>
             </tr>

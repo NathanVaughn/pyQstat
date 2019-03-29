@@ -4,6 +4,12 @@ import sys
 
 import xmltodict
 
+try:
+    from shlex import quote as cmd_quote
+except ImportError:
+    from pipes import quote as cmd_quote
+
+
 PYTHON_MAJOR = sys.version_info[0]
 
 FAKE = False
@@ -115,12 +121,15 @@ def get_hosts():
     return hosts
 
 
-def get_jobs():
+def get_jobs(user="*", queue="*"):
     """Get dict of job info"""
+    user = cmd_quote(queue)
+    queue = cmd_quote(queue)
+
     if FAKE:
         jobs_text = open_file("test/jobs.txt")
     else:
-        jobs_text = run_command(["qstat", "-u", '"*"'])
+        jobs_text = run_command(["qstat", "-u", user, "-q", queue])
     jobs = process_jobs_xml(jobs_text)
     return jobs
 
