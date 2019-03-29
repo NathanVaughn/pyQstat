@@ -26,8 +26,10 @@ def run_command(command):
     command = command + ["-xml"]
 
     shell = False
+    quotes = ['"', "'"]
+    joined = "\t".join(command)
 
-    if '"*"' in command:
+    if any([x in joined for x in quotes]):
         # Python doesn't like the quotations required, so concatentate and run as shell
         shell = True
         command = " ".join(command)
@@ -35,9 +37,11 @@ def run_command(command):
     if PYTHON_MAJOR == 3:
         return subprocess.check_output(command, shell=shell).decode("utf-8")
     else:
-        return subprocess.Popen(
-            command, shell=shell, stdout=subprocess.PIPE
-        ).communicate()[0]
+        return (
+            subprocess.Popen(command, shell=shell, stdout=subprocess.PIPE)
+            .communicate()[0]
+            .decode("utf-8")
+        )
 
 
 def open_file(filename):
@@ -91,14 +95,26 @@ def process_jobs_xml(text):
     """Process XML for jobs"""
     xml = process_xml(text)
 
+    # sys.stderr.write(str(xml))
+    # sys.stderr.flush()
+
+    main_entry = xml["job_info"]["queue_info"]["job_list"]
+
     jobs = []
-    for job in xml["job_info"]["queue_info"]["job_list"]:
+
+    if type(main_entry) == list:
+        for job in main_entry:
+            if "tasks" not in job:
+                job["tasks"] = ""
+            jobs.append(job)
+    else:
+        # single job result will not be in a list
+        job = main_entry
         if "tasks" not in job:
             job["tasks"] = ""
-
         jobs.append(job)
-    return jobs
 
+    return jobs
 
 def process_queues_xml(text):
     """Process XML for queues"""
@@ -123,7 +139,7 @@ def get_hosts():
 
 def get_jobs(user="*", queue="*"):
     """Get dict of job info"""
-    user = cmd_quote(queue)
+    user = cmd_quote(user)
     queue = cmd_quote(queue)
 
     if FAKE:

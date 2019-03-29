@@ -1,0 +1,5 @@
+return error page if no results found.
+test security of escaping
+automatic refresh
+display date/time and search parameters
+singular job status page
