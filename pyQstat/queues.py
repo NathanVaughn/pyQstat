@@ -10,4 +10,7 @@ bp = Blueprint("queues", __name__)
 def list_queues():
     queues = data.get_queues()
 
-    return render_template("queues/queues.html", queues=queues, title="Queues")
+    if queues:
+        return render_template("queues/queues.html", queues=queues, title="Queues")
+    else:
+        return render_template("error.html", title="Error", message="No queues found.")

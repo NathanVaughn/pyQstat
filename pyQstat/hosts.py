@@ -10,4 +10,7 @@ bp = Blueprint("hosts", __name__)
 def list_hosts():
     hosts = data.get_hosts()
 
-    return render_template("hosts/hosts.html", hosts=hosts, title="Hosts")
+    if hosts:
+        return render_template("hosts/hosts.html", hosts=hosts, title="Hosts")
+    else:
+        return render_template("error.html", title="Error", message="No hosts found.")

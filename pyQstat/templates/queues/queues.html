@@ -2,38 +2,42 @@
 {% set active_tab = "Queues" %}
 
 {% block content %}
-    <table id="main_table" class="table table-hover table-striped display nowrap">
-        <thead class="">
-            <tr>
-                <th data-priority="1">Name</th>
-                <th data-priority="100">Load</th>
-                <th data-priority="200">Used</th>
-                <th data-priority="500">Reserved</th>
-                <th data-priority="400">Available</th>
-                <th data-priority="300">Total</th>
-                <th data-priority="800">Temporarily Disabled</th>
-                <th data-priority="900">Manual Intervention</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for queue in queues -%}
-            {% if queue["manual_intervention"]|int %}
-            <tr class="table-danger">
-            {% elif queue["temp_disabled"]|int %}
-            <tr class="table-warning">
-            {% else %}
-            <tr>
-            {% endif %}
-                <td>{{ queue["name"] }}</td>
-                <td>{{ queue["load"] }}</td>
-                <td>{{ queue["used"] }}</td>
-                <td>{{ queue["resv"] }}</td>
-                <td>{{ queue["available"] }}</td>
-                <td>{{ queue["total"] }}</td>
-                <td>{{ queue["temp_disabled"] }}</td>
-                <td>{{ queue["manual_intervention"] }}</td>
-            </tr>
-        {% endfor -%}
-        </tbody>
-    </table>
+<div class="card shadow">
+    <div class="card-body">
+        <table id="main_table" class="table table-hover table-striped display nowrap">
+            <thead class="">
+                <tr>
+                    <th data-priority="1">Name</th>
+                    <th data-priority="100">Load</th>
+                    <th data-priority="200">Used</th>
+                    <th data-priority="500">Reserved</th>
+                    <th data-priority="400">Available</th>
+                    <th data-priority="300">Total</th>
+                    <th data-priority="800">Temporarily Disabled</th>
+                    <th data-priority="900">Manual Intervention</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for queue in queues -%}
+                {% if queue["manual_intervention"]|int %}
+                <tr class="table-danger">
+                {% elif queue["temp_disabled"]|int %}
+                <tr class="table-warning">
+                {% else %}
+                <tr>
+                {% endif %}
+                    <td>{{ queue["name"] }}</td>
+                    <td>{{ queue["load"] }}</td>
+                    <td>{{ queue["used"] }}</td>
+                    <td>{{ queue["resv"] }}</td>
+                    <td>{{ queue["available"] }}</td>
+                    <td>{{ queue["total"] }}</td>
+                    <td>{{ queue["temp_disabled"] }}</td>
+                    <td>{{ queue["manual_intervention"] }}</td>
+                </tr>
+            {% endfor -%}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

@@ -65,6 +65,9 @@ def process_hosts_xml(text):
     """Process XML for hosts, as the structure is very different"""
     xml = process_xml(text)
 
+    if not xml:
+        return []
+
     hosts = []
     for host in xml["qhost"]["host"]:
         values = [
@@ -95,8 +98,8 @@ def process_jobs_xml(text):
     """Process XML for jobs"""
     xml = process_xml(text)
 
-    # sys.stderr.write(str(xml))
-    # sys.stderr.flush()
+    if not xml:
+        return []
 
     main_entry = xml["job_info"]["queue_info"]["job_list"]
 
@@ -119,7 +122,10 @@ def process_jobs_xml(text):
 def process_queues_xml(text):
     """Process XML for queues"""
     xml = process_xml(text)
-    return xml["job_info"]["cluster_queue_summary"]
+    if xml:
+        return xml["job_info"]["cluster_queue_summary"]
+    else:
+        return []
 
 
 # =========

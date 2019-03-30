@@ -13,12 +13,8 @@
     {% include "partials/navbar.html" %}
 
     <main role="main" class="container">
-        <div class="card shadow">
-            <div class="card-body">
-            {% block content %}
-            {% endblock %}
-            </div>
-        </div>
+        {% block content %}
+        {% endblock %}
     </main>
 
     {% include "partials/footer.html" %}
