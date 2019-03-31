@@ -1,13 +1,23 @@
-<div class="card shadow">
-    <div class="card-body">
-        <div>
-        {{ now }}
-        </div>
-        <div>
-            <span id="countdown">05</span> sec
-        </div>
-        <div>
-            <button type="button" class="btn btn-outline-secondary">Refresh Data</button>
+<div class="pb-3">
+    <div class="card shadow">
+        <div class="card-body pb-1 pt-1">
+            <div class="d-flex h-100">
+                <div class="row mr-auto p-2">
+                    <div class="font-weight-bold justify-content-center align-self-center">
+                    {{ now }}
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="pr-3 text-muted justify-content-center align-self-center">
+                        <span id="countdown-value">120</span> sec
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="pl-3 justify-content-center align-self-center">
+                        <button type="button" onclick="window.location.reload()" class="btn btn-outline-secondary">Refresh Data</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

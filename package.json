@@ -4,8 +4,8 @@
   "description": "A small Python-based web app to display Sun Grid Engine (and forks) statistics.",
   "main": "./app/src/js/index.js",
   "scripts": {
-    "build-dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build-dev": "webpack --mode development --config webpack.dev.js",
+    "build": "webpack --mode production --config webpack.prod.js"
   },
   "author": "Nathan Vaughn",
   "license": "MIT",

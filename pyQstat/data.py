@@ -65,7 +65,7 @@ def process_hosts_xml(text):
     """Process XML for hosts, as the structure is very different"""
     xml = process_xml(text)
 
-    if not xml:
+    if type(xml["qhost"]["host"]) != list:
         return []
 
     hosts = []
@@ -98,7 +98,8 @@ def process_jobs_xml(text):
     """Process XML for jobs"""
     xml = process_xml(text)
 
-    if not xml:
+    if not xml["job_info"]["queue_info"]:
+        # will be none if no jobs
         return []
 
     main_entry = xml["job_info"]["queue_info"]["job_list"]
@@ -119,13 +120,20 @@ def process_jobs_xml(text):
 
     return jobs
 
+
 def process_queues_xml(text):
     """Process XML for queues"""
     xml = process_xml(text)
-    if xml:
-        return xml["job_info"]["cluster_queue_summary"]
-    else:
+
+    if "cluster_queue_summary" not in xml["job_info"]:
         return []
+
+    queues = xml["job_info"]["cluster_queue_summary"]
+
+    if type(queues) != list:
+        # single entry will not be wrapped by list
+        queues = [queues]
+    return queues
 
 
 # =========
@@ -134,7 +142,7 @@ def process_queues_xml(text):
 
 
 def get_hosts():
-    """Get dict of host info"""
+    """Get list of dicts of host info"""
     if FAKE:
         hosts_text = open_file("test/hosts.txt")
     else:
@@ -144,7 +152,7 @@ def get_hosts():
 
 
 def get_jobs(user="*", queue="*"):
-    """Get dict of job info"""
+    """Get list of dicts of job info"""
     user = cmd_quote(user)
     queue = cmd_quote(queue)
 
@@ -157,10 +165,44 @@ def get_jobs(user="*", queue="*"):
 
 
 def get_queues():
-    """Get dict of queue info"""
+    """Get list of dicts of queue info"""
     if FAKE:
         queues_text = open_file("test/queues.txt")
     else:
         queues_text = run_command(["qstat", "-g", "c"])
     queues = process_queues_xml(queues_text)
     return queues
+
+
+"""
+OrderedDict(
+    [
+        (
+            "job_info",
+            OrderedDict(
+                [
+                    (
+                        "@xmlns:xsd",
+                        "http://arc.liv.ac.uk/repos/darcs/sge/source/dist/util/resources/schemas/qstat/qstat.xsd",
+                    ),
+                    (
+                        "cluster_queue_summary",
+                        OrderedDict(
+                            [
+                                ("name", "all.q"),
+                                ("load", "0.42000"),
+                                ("used", "0"),
+                                ("resv", "0"),
+                                ("available", "0"),
+                                ("total", "28"),
+                                ("temp_disabled", "0"),
+                                ("manual_intervention", "0"),
+                            ]
+                        ),
+                    ),
+                ]
+            ),
+        )
+    ]
+)
+"""

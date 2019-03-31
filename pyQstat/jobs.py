@@ -15,9 +15,7 @@ def list_jobs():
     # ordering = [[1, "desc"], [4, "asc"]]
     ordering = [[0, "desc"]]
 
-    if jobs:
-        return render_template(
-            "jobs/jobs.html", jobs=jobs, ordering=ordering, title="Jobs"
-        )
-    else:
-        return render_template("error.html", title="Error", message="No jobs found.")
+    # if jobs:
+    return render_template("jobs/jobs.html", jobs=jobs, ordering=ordering, title="Jobs")
+    # else:
+    #    return render_template("error.html", title="Error", message="No jobs found.")

@@ -37,4 +37,14 @@ $(document).ready(function () {
             },
         });
     }
+
+    (function countdown(remaining) {
+        if (remaining <= 0)
+            location.reload(true);
+        document.getElementById('countdown-value').innerHTML = remaining;
+        setTimeout(function () {
+            countdown(remaining - 1);
+        }, 1000);
+    })(120);
+
 });
