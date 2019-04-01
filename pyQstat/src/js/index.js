@@ -17,10 +17,11 @@ import $ from 'jquery';
 import './../css/style.css';
 
 $(document).ready(function () {
-    var id = 'main_table';
+    var tableid = 'main_table';
+    var countdownid = 'countdown-value';
 
-    if (document.getElementById(id)) {
-        $('#' + id).DataTable({
+    if (document.getElementById(tableid)) {
+        $('#' + tableid).DataTable({
             responsive: true,
             autoWidth: false,
             fixedHeader: true,
@@ -37,14 +38,14 @@ $(document).ready(function () {
             },
         });
     }
-
-    (function countdown(remaining) {
-        if (remaining <= 0)
-            location.reload(true);
-        document.getElementById('countdown-value').innerHTML = remaining;
-        setTimeout(function () {
-            countdown(remaining - 1);
-        }, 1000);
-    })(120);
-
+    if (document.getElementById(countdownid)) {
+        (function countdown(remaining) {
+            if (remaining <= 0)
+                location.reload(true);
+            document.getElementById(countdownid).innerHTML = remaining;
+            setTimeout(function () {
+                countdown(remaining - 1);
+            }, 1000);
+        })(120);
+    };
 });

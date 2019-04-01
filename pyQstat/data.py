@@ -1,3 +1,4 @@
+import datetime
 import os
 import subprocess
 import sys
@@ -15,6 +16,14 @@ PYTHON_MAJOR = sys.version_info[0]
 FAKE = False
 if "FLASK_FAKE" in os.environ.keys():
     FAKE = os.environ["FLASK_FAKE"] == "True"
+
+
+def sizeof_fmt(num):
+    for x in ["bytes", "KB", "MB", "GB", "TB"]:
+        if num < 1024.0:
+            return "%3.2f %s" % (num, x)
+        num /= 1024.0
+
 
 # =========
 # Command execution
@@ -121,6 +130,46 @@ def process_jobs_xml(text):
     return jobs
 
 
+def process_job_xml(text):
+    """Process XML for single job"""
+    xml = process_xml(text)
+
+    if "unknown_jobs" in xml:
+        return ([], [])
+
+    job = xml["detailed_job_info"]["djob_info"]["element"]
+
+    # wrap tasks in a list if not
+    if type(job["JB_ja_tasks"]["ulong_sublist"]) != list:
+        job["JB_ja_tasks"]["ulong_sublist"] = [job["JB_ja_tasks"]["ulong_sublist"]]
+
+    # fix queue
+    if "JB_hard_queue_list" not in job:
+        job['JB_hard_queue_list'] = {}
+        job['JB_hard_queue_list']['destin_ident_list'] = {}
+        job['JB_hard_queue_list']['destin_ident_list']['QR_name'] = ""
+
+    # fix PE
+    if "JB_pe" not in job:
+        job['JB_pe'] = ""
+
+    # fix pe slots
+    if "JB_pe_range" not in job:
+        job['JB_pe_range'] = {}
+        job['JB_pe_range']['ranges'] = {}
+        job['JB_pe_range']['RN_Max'] = ""
+
+    # check if messages are present
+    if "messages" in xml["detailed_job_info"]:
+        messages = xml["detailed_job_info"]["messages"]["element"]["SME_global_message_list"]["element"]
+        if type(messages) != list:
+            messages = [messages]
+    else:
+        messages = []
+
+    return (job, messages)
+
+
 def process_queues_xml(text):
     """Process XML for queues"""
     xml = process_xml(text)
@@ -164,6 +213,41 @@ def get_jobs(user="*", queue="*"):
     return jobs
 
 
+def get_job(id):
+    """Get dict of job info"""
+    if FAKE:
+        job_text = open_file("test/singlejob.txt")
+    else:
+        job_text = run_command(["qstat", "-j", id])
+    job, messages = process_job_xml(job_text)
+
+    if not job:
+        return []
+
+    # convert unix timestamp to local time in a readable format
+    ts = int(job["JB_submission_time"])
+    new_time = datetime.datetime.fromtimestamp(ts).strftime("%a, %d %b %Y %X %z")
+    job["JB_submission_time"] = new_time
+
+    # convert bytes and other unreadable text to human readable
+    for task in job["JB_ja_tasks"]["ulong_sublist"]:
+        for i, item in enumerate(task["JAT_scaled_usage_list"]["scaled"]):
+            value = item["UA_value"]
+            if i in [0]:
+                value = str(datetime.timedelta(seconds=float(value)))
+            elif i in [1]:
+                value = "%3.2f GBsec" % (float(value))
+            elif i in [2]:
+                value = "%3.2f GB" % (float(value))
+            elif i in [3]:
+                value = "%3.2f sec" % (float(value))
+            if i in [4, 5]:
+                value = sizeof_fmt(float(value))
+            item["UA_value"] = value
+
+    return (job, messages)
+
+
 def get_queues():
     """Get list of dicts of queue info"""
     if FAKE:
@@ -172,37 +256,3 @@ def get_queues():
         queues_text = run_command(["qstat", "-g", "c"])
     queues = process_queues_xml(queues_text)
     return queues
-
-
-"""
-OrderedDict(
-    [
-        (
-            "job_info",
-            OrderedDict(
-                [
-                    (
-                        "@xmlns:xsd",
-                        "http://arc.liv.ac.uk/repos/darcs/sge/source/dist/util/resources/schemas/qstat/qstat.xsd",
-                    ),
-                    (
-                        "cluster_queue_summary",
-                        OrderedDict(
-                            [
-                                ("name", "all.q"),
-                                ("load", "0.42000"),
-                                ("used", "0"),
-                                ("resv", "0"),
-                                ("available", "0"),
-                                ("total", "28"),
-                                ("temp_disabled", "0"),
-                                ("manual_intervention", "0"),
-                            ]
-                        ),
-                    ),
-                ]
-            ),
-        )
-    ]
-)
-"""

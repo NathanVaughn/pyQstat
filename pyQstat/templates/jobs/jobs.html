@@ -7,7 +7,7 @@
 <div class="card shadow">
     <div class="card-body">
         <table id="main_table" class="table table-hover table-striped display nowrap">
-            <thead class="">
+            <thead>
                 <tr>
                     <th data-priority="1">Job ID</th>
                     <th data-priority="900">Priority</th>
@@ -31,13 +31,13 @@
                 {% else %}
                 <tr>
                 {% endif %}
-                    <td>{{ job["JB_job_number"] }}</td>
+                    <td><a href="{{ url_for('jobs.single_job', id=job['JB_job_number']) }}">{{ job["JB_job_number"] }}</a></td>
                     <td>{{ job["JAT_prio"] }}</td>
                     <td>{{ job["JB_name"] }}</td>
-                    <td><a href="{{ url_for('jobs.list_jobs', user=job['JB_owner']) }}">{{ job["JB_owner"] }}</a></td>
+                    <td><a href="{{ url_for('jobs.all_jobs', user=job['JB_owner']) }}">{{ job["JB_owner"] }}</a></td>
                     <td>{{ job["state"] }}</td>
                     <td>{{ job["JAT_start_time"] }}</td>
-                    <td><a href="{{ url_for('jobs.list_jobs', queue=job['queue_name']) }}">{{ job["queue_name"] }}</a></td>
+                    <td><a href="{{ url_for('jobs.all_jobs', queue=job['queue_name']) }}">{{ job["queue_name"] }}</a></td>
                     <td>{{ job["slots"] }}</td>
                     <td>{{ job["tasks"] }}</td>
                 </tr>
