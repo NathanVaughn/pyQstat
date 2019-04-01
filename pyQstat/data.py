@@ -145,23 +145,25 @@ def process_job_xml(text):
 
     # fix queue
     if "JB_hard_queue_list" not in job:
-        job['JB_hard_queue_list'] = {}
-        job['JB_hard_queue_list']['destin_ident_list'] = {}
-        job['JB_hard_queue_list']['destin_ident_list']['QR_name'] = ""
+        job["JB_hard_queue_list"] = {}
+        job["JB_hard_queue_list"]["destin_ident_list"] = {}
+        job["JB_hard_queue_list"]["destin_ident_list"]["QR_name"] = ""
 
     # fix PE
     if "JB_pe" not in job:
-        job['JB_pe'] = ""
+        job["JB_pe"] = ""
 
     # fix pe slots
     if "JB_pe_range" not in job:
-        job['JB_pe_range'] = {}
-        job['JB_pe_range']['ranges'] = {}
-        job['JB_pe_range']['RN_Max'] = ""
+        job["JB_pe_range"] = {}
+        job["JB_pe_range"]["ranges"] = {}
+        job["JB_pe_range"]["RN_Max"] = ""
 
     # check if messages are present
     if "messages" in xml["detailed_job_info"]:
-        messages = xml["detailed_job_info"]["messages"]["element"]["SME_global_message_list"]["element"]
+        messages = xml["detailed_job_info"]["messages"]["element"][
+            "SME_global_message_list"
+        ]["element"]
         if type(messages) != list:
             messages = [messages]
     else:

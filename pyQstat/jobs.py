@@ -16,11 +16,16 @@ def all_jobs():
 
     return render_template("jobs/jobs.html", jobs=jobs, ordering=ordering, title="Jobs")
 
+
 @bp.route("/jobs/<int:id>")
 def single_job(id):
     job, messages = data.get_job(id)
 
     if job:
-        return render_template("jobs/job.html", job=job, messages=messages, title="Job " + str(id))
+        return render_template(
+            "jobs/job.html", job=job, messages=messages, title="Job " + str(id)
+        )
     else:
-        return render_template("error.html", title="Error", message="Job {} not found.".format(id))
+        return render_template(
+            "error.html", title="Error", message="Job {} not found.".format(id)
+        )
