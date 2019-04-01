@@ -11,7 +11,13 @@ A small Python-based web app to display Sun Grid Engine (and forks) statistics.
 
 ### Jobs
 
+#### Overview
+
 ![Jobs](screenshots/jobs.jpg)
+
+#### Single Job
+
+![Single Job](screenshots/single_job.jpg)
 
 ### Queues
 
