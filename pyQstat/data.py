@@ -222,7 +222,7 @@ def get_job(id):
     job, messages = process_job_xml(job_text)
 
     if not job:
-        return []
+        return ([], [])
 
     # convert unix timestamp to local time in a readable format
     ts = int(job["JB_submission_time"])
