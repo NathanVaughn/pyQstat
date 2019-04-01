@@ -59,6 +59,7 @@
                         <input type="text" class="form-control" id="shell" value="{{ job['JB_env_list']['job_sublist'][3]['VA_value'] }}" readonly>
                     </div>
                 </div>
+                {% if tasks %}
                 <hr class="mb-4">
                 <h4 class="mb-3">Tasks</h4>
                 <div class="row">
@@ -76,21 +77,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for tasks in job['JB_ja_tasks']['ulong_sublist'] -%}
+                            {% for task in tasks -%}
                                 <tr>
-                                    <td>{{ tasks['JAT_task_number'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][0]['UA_value'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][1]['UA_value'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][2]['UA_value'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][3]['UA_value'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][4]['UA_value'] }}</td>
-                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][5]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_task_number'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][0]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][1]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][2]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][3]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][4]['UA_value'] }}</td>
+                                    <td>{{ task['JAT_scaled_usage_list']['scaled'][5]['UA_value'] }}</td>
                                 </tr>
                             {% endfor -%}
                             </tbody>
                         </table>
                     </div>
                 </div>
+                {% endif %}
                 {% if messages %}
                 <hr class="mb-4">
                 <h4 class="mb-3">Messages</h4>

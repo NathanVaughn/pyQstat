@@ -224,30 +224,33 @@ def get_job(id):
     job, messages = process_job_xml(job_text)
 
     if not job:
-        return ([], [])
+        return ([], [], [])
 
     # convert unix timestamp to local time in a readable format
     ts = int(job["JB_submission_time"])
     new_time = datetime.datetime.fromtimestamp(ts).strftime("%a, %d %b %Y %X %z")
     job["JB_submission_time"] = new_time
 
+    tasks = []
     # convert bytes and other unreadable text to human readable
-    for task in job["JB_ja_tasks"]["ulong_sublist"]:
-        for i, item in enumerate(task["JAT_scaled_usage_list"]["scaled"]):
-            value = item["UA_value"]
-            if i in [0]:
-                value = str(datetime.timedelta(seconds=float(value)))
-            elif i in [1]:
-                value = "%3.2f GBsec" % (float(value))
-            elif i in [2]:
-                value = "%3.2f GB" % (float(value))
-            elif i in [3]:
-                value = "%3.2f sec" % (float(value))
-            if i in [4, 5]:
-                value = sizeof_fmt(float(value))
-            item["UA_value"] = value
+    if "JAT_scaled_usage_list" in job["JB_ja_tasks"]["ulong_sublist"][0]:
+        for task in job["JB_ja_tasks"]["ulong_sublist"]:
+            for i, item in enumerate(task["JAT_scaled_usage_list"]["scaled"]):
+                value = item["UA_value"]
+                if i in [0]:
+                    value = str(datetime.timedelta(seconds=float(value)))
+                elif i in [1]:
+                    value = "%3.2f GBsec" % (float(value))
+                elif i in [2]:
+                    value = "%3.2f GB" % (float(value))
+                elif i in [3]:
+                    value = "%3.2f sec" % (float(value))
+                if i in [4, 5]:
+                    value = sizeof_fmt(float(value))
+                item["UA_value"] = value
+            tasks.append(task)
 
-    return (job, messages)
+    return (job, tasks, messages)
 
 
 def get_queues():

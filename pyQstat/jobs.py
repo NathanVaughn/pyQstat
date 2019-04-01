@@ -19,11 +19,11 @@ def all_jobs():
 
 @bp.route("/jobs/<int:id>")
 def single_job(id):
-    job, messages = data.get_job(id)
+    job, tasks, messages = data.get_job(id)
 
     if job:
         return render_template(
-            "jobs/job.html", job=job, messages=messages, title="Job " + str(id)
+            "jobs/job.html", job=job, tasks=tasks, messages=messages, title="Job " + str(id)
         )
     else:
         return render_template(
