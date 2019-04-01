@@ -218,7 +218,7 @@ def get_job(id):
     if FAKE:
         job_text = open_file("test/singlejob.txt")
     else:
-        job_text = run_command(["qstat", "-j", id])
+        job_text = run_command(["qstat", "-j", str(id)])
     job, messages = process_job_xml(job_text)
 
     if not job:
