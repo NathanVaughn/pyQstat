@@ -2,43 +2,49 @@
 {% set active_tab = "Hosts" %}
 
 {% block content %}
-    <table id="main_table" class="table table-hover table-striped display nowrap">
-        <thead class="">
-            <tr>
-                <th data-priority="1">Hostname</th>
-                <th data-priority="1000">Architecture</th>
-                <th data-priority="400">Cores</th>
-                <th data-priority="300">Threads</th>
-                <th data-priority="200">Load</th>
-                <th data-priority="600">RAM Use</th>
-                <th data-priority="700">RAM Total</th>
-                <th data-priority="800">SWAP Use</th>
-                <th data-priority="900">SWAP Total</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for host in hosts -%}
-            {% set load_per = (host["load_avg"]|float / host["m_thread"]|float * 100)|int %}
-            {% if load_per >= 75 %}
-            <tr class="table-danger">
-            {% elif load_per >= 50 %}
-            <tr class="table-warning">
-            {% elif load_per >= 25 %}
-            <tr class="table-info">
-            {% else %}
-            <tr>
-            {% endif %}
-                <td>{{ host["hostname"] }}</td>
-                <td>{{ host["arch_string"] }}</td>
-                <td>{{ host["m_core"] }}</td>
-                <td>{{ host["m_thread"] }}</td>
-                <td>{{ host["load_avg"] }}</td>
-                <td>{{ host["mem_used"] }}</td>
-                <td>{{ host["mem_total"] }}</td>
-                <td>{{ host["swap_used"] }}</td>
-                <td>{{ host["swap_total"] }}</td>
-            </tr>
-        {% endfor -%}
-        </tbody>
-    </table>
+{% include "partials/report.html" %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <table id="main_table" class="table table-hover table-striped display nowrap">
+            <thead>
+                <tr>
+                    <th data-priority="1">Hostname</th>
+                    <th data-priority="1000">Architecture</th>
+                    <th data-priority="400">Cores</th>
+                    <th data-priority="300">Threads</th>
+                    <th data-priority="200">Load</th>
+                    <th data-priority="600">RAM Use</th>
+                    <th data-priority="700">RAM Total</th>
+                    <th data-priority="800">SWAP Use</th>
+                    <th data-priority="900">SWAP Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for host in hosts -%}
+                {% set load_per = (host["load_avg"]|float / host["m_thread"]|float * 100)|int %}
+                {% if load_per >= 75 %}
+                <tr class="table-danger">
+                {% elif load_per >= 50 %}
+                <tr class="table-warning">
+                {% elif load_per >= 25 %}
+                <tr class="table-info">
+                {% else %}
+                <tr>
+                {% endif %}
+                    <td>{{ host["hostname"] }}</td>
+                    <td>{{ host["arch_string"] }}</td>
+                    <td>{{ host["m_core"] }}</td>
+                    <td>{{ host["m_thread"] }}</td>
+                    <td>{{ host["load_avg"] }}</td>
+                    <td>{{ host["mem_used"] }}</td>
+                    <td>{{ host["mem_total"] }}</td>
+                    <td>{{ host["swap_used"] }}</td>
+                    <td>{{ host["swap_total"] }}</td>
+                </tr>
+            {% endfor -%}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

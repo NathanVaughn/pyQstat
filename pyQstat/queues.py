@@ -7,7 +7,7 @@ bp = Blueprint("queues", __name__)
 
 
 @bp.route("/queues")
-def all():
+def all_queues():
     queues = data.get_queues()
 
     return render_template("queues/queues.html", queues=queues, title="Queues")

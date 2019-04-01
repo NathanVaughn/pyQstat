@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% set active_tab = "Jobs" %}
+
+{% block content %}
+<div class="card shadow">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 order-md-1">
+                <h4 class="mb-3">Job Overivew</h4>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label for="number">Number</label>
+                        <input type="text" class="form-control" id="number" value="{{ job['JB_job_number'] }}" readonly>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" value="{{ job['JB_job_name'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="group">Group</label>
+                        <input type="text" class="form-control" id="group" value="{{ job['JB_group'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="owner">Owner</label>
+                        <input type="text" class="form-control" id="owner" value="{{ job['JB_owner'] }}" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="submittime">Submit Time</label>
+                        <input type="text" class="form-control" id="submittime" value="{{ job['JB_submission_time'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="queue">Queue</label>
+                        <input type="text" class="form-control" id="queue" value="{{ job['JB_hard_queue_list']['destin_ident_list']['QR_name'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="pe">Parallel Enivornment</label>
+                        <input type="text" class="form-control" id="pe" value="{{ job['JB_pe'] }}" readonly>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="slots">Slots</label>
+                        <input type="text" class="form-control" id="slots" value="{{ job['JB_pe_range']['ranges']['RN_max'] }}" readonly>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <h4 class="mb-3">Technical Details</h4>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="script">Script File</label>
+                        <input type="text" class="form-control" id="script" value="{{ job['JB_script_file'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cwd">Working Directory</label>
+                        <input type="text" class="form-control" id="cwd" value="{{ job['JB_env_list']['job_sublist'][7]['VA_value'] }}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="shell">Shell</label>
+                        <input type="text" class="form-control" id="shell" value="{{ job['JB_env_list']['job_sublist'][3]['VA_value'] }}" readonly>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <h4 class="mb-3">Tasks</h4>
+                <div class="row">
+                    <div class="col-md-12 mb-3 table-responsive">
+                        <table class="table table-sm table-hover table-striped display nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Task #</th>
+                                    <th>CPU Time</th>
+                                    <th>Mem</th>
+                                    <th>IO</th>
+                                    <th>IOW</th>
+                                    <th>VMem</th>
+                                    <th>Max VMem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for tasks in job['JB_ja_tasks']['ulong_sublist'] -%}
+                                <tr>
+                                    <td>{{ tasks['JAT_task_number'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][0]['UA_value'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][1]['UA_value'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][2]['UA_value'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][3]['UA_value'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][4]['UA_value'] }}</td>
+                                    <td>{{ tasks['JAT_scaled_usage_list']['scaled'][5]['UA_value'] }}</td>
+                                </tr>
+                            {% endfor -%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% if messages %}
+                <hr class="mb-4">
+                <h4 class="mb-3">Messages</h4>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <ul class="list-group">
+                            {% for message in messages %}
+                            <li class="list-group-item">{{ message['MES_message'] }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

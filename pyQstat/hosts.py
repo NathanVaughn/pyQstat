@@ -7,7 +7,7 @@ bp = Blueprint("hosts", __name__)
 
 
 @bp.route("/hosts")
-def all():
+def all_hosts():
     hosts = data.get_hosts()
 
     return render_template("hosts/hosts.html", hosts=hosts, title="Hosts")
