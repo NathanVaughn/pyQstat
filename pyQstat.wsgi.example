@@ -8,7 +8,7 @@ PYTHON_MAJOR = sys.version_info[0]
 # =======================
 # make sure this is correct!
 # =======================
-install_dir = "/var/www/html/app"
+install_dir = "/var/www/html/pyQstat"
 activate_this = os.path.join(install_dir, "venv/bin/activate_this.py")
 # =======================
 
