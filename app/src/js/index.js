@@ -9,7 +9,7 @@ import 'datatables.net-buttons-bs4/css/buttons.bootstrap4.css';
 import 'datatables.net-buttons/js/buttons.colVis.js';
 import 'datatables.net-fixedheader';
 import 'datatables.net-fixedheader-bs4';
-import 'datatables.net-fixedheader-bs4/css/fixedheader.bootstrap4.css';
+import 'datatables.net-fixedheader-bs4/css/fixedHeader.bootstrap4.css';
 import 'datatables.net-responsive';
 import 'datatables.net-responsive-bs4';
 import 'datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
