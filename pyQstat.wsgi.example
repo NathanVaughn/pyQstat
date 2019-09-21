@@ -8,7 +8,7 @@ PYTHON_MAJOR = sys.version_info[0]
 # =======================
 # make sure this is correct!
 # =======================
-install_dir = "/var/www/html/pyQstat"
+install_dir = "/var/www/html/app"
 activate_this = os.path.join(install_dir, "venv/bin/activate_this.py")
 # =======================
 
@@ -33,6 +33,6 @@ os.environ["SGE_EXECD_PORT"] = "537"
 if True:
     # the if True: is so that Black doesn't try to combine this import with the others,
     # as it needs to be after sys.path has been configured.
-    from pyQstat import create_app
+    from app import create_app
 
 application = create_app()

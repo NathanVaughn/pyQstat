@@ -14,7 +14,7 @@ import 'datatables.net-responsive';
 import 'datatables.net-responsive-bs4';
 import 'datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
 import $ from 'jquery';
-import './../css/style.css';
+import '../css/style.css';
 
 $(document).ready(function () {
     var tableid = 'main_table';
@@ -47,5 +47,5 @@ $(document).ready(function () {
                 countdown(remaining - 1);
             }, 1000);
         })(120);
-    };
+    }
 });

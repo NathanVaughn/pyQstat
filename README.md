@@ -3,6 +3,8 @@
 
 A small Python-based web app to display Sun Grid Engine (and forks) statistics.
 
+Works with both Python 2 and 3 for all your backwards and forwards compatibility needs.
+
 ## Screenshots
 
 ### Hosts

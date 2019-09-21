@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const PATHS = {
     // setup some basic useful paths
-    src: path.join(__dirname, 'pyQstat', 'src'),
-    dist: path.join(__dirname, 'pyQstat', 'dist')
+    src: path.join(__dirname, 'app', 'src'),
+    dist: path.join(__dirname, 'app', 'dist')
 };
 
 module.exports = {

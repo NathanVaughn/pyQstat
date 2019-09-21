@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, url_for
 from werkzeug.exceptions import abort
 
-from pyQstat import data
+from app import data
 
 bp = Blueprint("queues", __name__)
 

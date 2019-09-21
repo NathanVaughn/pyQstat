@@ -6,8 +6,8 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const PATHS = {
     // setup some basic useful paths
-    src: path.join(__dirname, 'pyQstat', 'src'),
-    dist: path.join(__dirname, 'pyQstat', 'dist')
+    src: path.join(__dirname, 'app', 'src'),
+    dist: path.join(__dirname, 'app', 'dist')
 };
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
         }),
         // remove extra css
         new PurgecssPlugin({
-            paths: glob.sync('pyQstat/**/*', {
+            paths: glob.sync('app/**/*', {
                 nodir: true
             }),
         }),

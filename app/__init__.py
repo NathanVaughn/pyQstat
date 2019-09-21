@@ -8,7 +8,7 @@ def create_app():
     # create and configure the app
     app = Flask(__name__, static_folder = './dist',)
 
-    from pyQstat import hosts, jobs, queues
+    from app import hosts, jobs, queues
 
     @app.context_processor
     def inject_now():

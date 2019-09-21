@@ -1,6 +1,8 @@
 __pycache__
 *.pyc
+*.wsgi
+
 node_modules
 package-lock.json
 venv
-*.wsgi
+.vscode
