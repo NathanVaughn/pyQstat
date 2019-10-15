@@ -17,6 +17,9 @@ jobs:
     - name: Build code
       run: npm run build
     - name: Commit changes
-      uses: elstudio/actions-js-build/commit@master
+      uses: stefanzweifel/git-auto-commit-action@master
+      with:
+        commit_message: Automatic code build
+        branch: master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
